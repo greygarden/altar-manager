@@ -20,7 +20,7 @@ if (!process.env.ALTAR_WORKER_DEVICES) {
 
     for (workerDevice of workerDevices) {
         const port = new SerialPort(workerDevice, {
-            parser: serialport.parsers.readline('\n\r'),
+            parser: serialport.parsers.readline('\r\n'),
             baudRate: 38400
         });
         port.on('data', (data) => {
