@@ -1,7 +1,6 @@
 const serialport = require('serialport');
 const SerialPort = serialport.SerialPort;
 const request = require('request-promise');
-const moment = require('moment');
 
 // Get the device locations for the workers
 if (!process.env.ALTAR_WORKER_DEVICES) {
