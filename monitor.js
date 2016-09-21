@@ -20,7 +20,7 @@ if (!process.env.ALTAR_WORKER_DEVICES) {
 
     for (workerDevice of workerDevices) {
         const port = new SerialPort(workerDevice, {
-            parser: serialport.parsers.readline('\n'),
+            parser: serialport.parsers.readline('\n\r'),
             baudRate: 38400
         });
         port.on('data', (data) => {
@@ -30,8 +30,6 @@ if (!process.env.ALTAR_WORKER_DEVICES) {
                 body: JSON.stringify({
                     data: data
                 })
-            }).then((data) => {
-                console.log(data.body);
             }).catch((error) => {
                 console.log(error);
             });
