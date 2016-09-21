@@ -1,5 +1,5 @@
-const SerialPort = require('serialport');
-const ReadLine = SerialPort.parsers.ReadLine;
+const serialport = require('serialport');
+const SerialPort = serialport.SerialPort;
 
 // Get the device locations for the workers
 if (!process.env.ALTAR_WORKER_DEVICES) {
@@ -16,9 +16,9 @@ if (!process.env.ALTAR_WORKER_DEVICES) {
 
     for (workerDevice of workerDevices) {
         const port = new SerialPort(workerDevice, {
+            parser: serialport.parsers.readline('\n'),
             baudRate: 38400
         });
-        const parser = port.pipe(ReadLine({ delimiter: '\n' }));
-        parser.on('data', console.log);
+        port.on('data', console.log);
     }
 }
