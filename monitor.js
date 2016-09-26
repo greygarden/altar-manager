@@ -27,9 +27,7 @@ if (!process.env.ALTAR_WORKER_DEVICES) {
             request({
                 method: 'POST',
                 uri: process.env.SPIRIT_URL + '/metrics',
-                body: JSON.stringify({
-                    data: data
-                })
+                body: data
             }).catch((error) => {
                 console.log(error);
             });
